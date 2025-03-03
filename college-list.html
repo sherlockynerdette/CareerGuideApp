@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Colleges for You</h2>
+        <ul id="collegeList"></ul>
+    </div>
+
+    <script src="firebase.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let selectedCareer = localStorage.getItem("selectedCareer");
+            let selectedLocation = localStorage.getItem("selectedLocation");
+
+            firebase.firestore().collection("colleges")
+            .where("career", "==", selectedCareer)
+            .where("location", "==", selectedLocation)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    let college = doc.data();
+                    let listItem = document.createElement("li");
+                    listItem.innerHTML = `<a href="college-details.html?id=${doc.id}">${college.name}</a>`;
+                    document.getElementById("collegeList").appendChild(listItem);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

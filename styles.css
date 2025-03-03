@@ -1,0 +1,81 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e7e9, #e3eeff);
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: #0077cc;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Student Login & Signup */
+.auth-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.auth-btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.login {
+    background: #ff6600;
+}
+
+.signup {
+    background: #28a745;
+}
+
+.auth-btn:hover {
+    opacity: 0.8;
+}
+
+/* Main Navigation */
+.menu {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.menu a {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: #0077cc;
+    color: white;
+    transform: scale(1.05);
+}

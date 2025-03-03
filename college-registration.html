@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>College Registration</h2>
+        <input type="text" id="studentName" placeholder="Your Name">
+        <input type="email" id="studentEmail" placeholder="Your Email">
+        <input type="text" id="studentPhone" placeholder="Your Phone">
+        <button onclick="submitRegistration()">Submit</button>
+    </div>
+
+    <script src="firebase.js"></script>
+    <script>
+        function submitRegistration() {
+            let name = document.getElementById("studentName").value;
+            let email = document.getElementById("studentEmail").value;
+            let phone = document.getElementById("studentPhone").value;
+
+            firebase.firestore().collection("registrations").add({
+                name: name,
+                email: email,
+                phone: phone
+            }).then(() => {
+                alert("Registration Successful!");
+                window.location.href = "student-dashboard.html";
+            }).catch((error) => {
+                alert(error.message);
+            });
+        }
+    </script>
+</body>
+</html>

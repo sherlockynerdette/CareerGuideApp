@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Aptitude Test</h2>
+        <form id="aptitudeForm">
+            <p>1. What is 2 + 2?</p>
+            <input type="radio" name="q1" value="3"> 3
+            <input type="radio" name="q1" value="4"> 4
+            <input type="radio" name="q1" value="5"> 5
+            <br>
+
+            <p>2. What is the capital of India?</p>
+            <input type="radio" name="q2" value="Mumbai"> Mumbai
+            <input type="radio" name="q2" value="Delhi"> Delhi
+            <input type="radio" name="q2" value="Kolkata"> Kolkata
+            <br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="firebase.js"></script>
+    <script>
+        document.getElementById("aptitudeForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let answers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value
+            };
+
+            firebase.firestore().collection("testResults").add(answers)
+                .then(() => {
+                    alert("Test Submitted!");
+                    window.location.href = "test-completion.html";
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="collegeName">Loading...</h2>
+        <p id="collegeLocation"></p>
+        <p id="collegeDescription"></p>
+        <button onclick="registerForCollege()">Register</button>
+    </div>
+
+    <script src="firebase.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const params = new URLSearchParams(window.location.search);
+            const collegeId = params.get("id");
+
+            firebase.firestore().collection("colleges").doc(collegeId).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        let data = doc.data();
+                        document.getElementById("collegeName").innerText = data.name;
+                        document.getElementById("collegeLocation").innerText = "Location: " + data.location;
+                        document.getElementById("collegeDescription").innerText = data.description;
+                    } else {
+                        alert("College not found");
+                    }
+                });
+        });
+
+        function registerForCollege() {
+            alert("Redirecting to Registration Page...");
+            window.location.href = "college-registration.html";
+        }
+    </script>
+</body>
+</html>

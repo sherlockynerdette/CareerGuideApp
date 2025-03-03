@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Student Profile</h2>
+        <p><b>Name:</b> <span id="profileName"></span></p>
+        <p><b>Email:</b> <span id="profileEmail"></span></p>
+        <button onclick="editProfile()">Edit Profile</button>
+    </div>
+
+    <script src="firebase.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let user = firebase.auth().currentUser;
+            if (user) {
+                document.getElementById("profileName").innerText = user.displayName || "Not Set";
+                document.getElementById("profileEmail").innerText = user.email;
+            }
+        });
+
+        function editProfile() {
+            window.location.href = "edit-profile.html";
+        }
+    </script>
+</body>
+</html>
